@@ -110,7 +110,11 @@ void multi_gpu_gpt_example(const INIReader reader, std::string in_csv)
     cusparseLtHandle_t cusparselt_handle;
 #endif
 
+    std::cout << "Atleast we are getting started 3";
+    
     init_nccl(model_config, tensor_para, pipeline_para);
+    
+    std::cout << "Atleast we are getting started 4";
     cublasMMWrapper cublas_wrapper = init_cublas_ctx(data_type,
                                                      stream,
                                                      allocator,
