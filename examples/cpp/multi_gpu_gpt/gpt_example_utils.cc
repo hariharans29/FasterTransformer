@@ -352,6 +352,8 @@ void populate_request(std::unordered_map<std::string, Tensor>& input_tensors,
     request_batch_size = read_start_ids(
         request_batch_size, &v_start_lengths, &v_start_ids, max_input_len, model_config.end_id, 1, csv_path);
 
+    std::cout << max_input_len << "\n";
+  
     if (max_input_len > 0) {
         // conditional case.
         deviceMalloc(&d_input_ids, request_batch_size * max_input_len, false);
