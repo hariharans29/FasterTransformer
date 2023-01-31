@@ -66,6 +66,7 @@ int main(int argc, char* argv[])
         multi_gpu_gpt_example<float>(reader, in_csv);
     }
     else if (data_type == "fp16") {
+        std::cout << "Hello there";
         multi_gpu_gpt_example<half>(reader, in_csv);
     }
 #ifdef ENABLE_BF16
@@ -93,7 +94,8 @@ void multi_gpu_gpt_example(const INIReader reader, std::string in_csv)
     NcclParam tensor_para, pipeline_para;
     int       rank, world_size;
     std::tie(rank, world_size) = init_multiprocessing(model_config);
-
+    std::cout << "Atleast we are getting started";
+    
     cudaStream_t                   stream;
     cudaDeviceProp                 prop;
     Allocator<AllocatorType::CUDA> allocator(init_cuda_ctx(stream, prop, rank));
