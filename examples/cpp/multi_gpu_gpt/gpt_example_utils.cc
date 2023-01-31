@@ -291,6 +291,8 @@ cublasMMWrapper init_cublas_ctx(DataType                        data_type,
 #endif
 )
 {
+    std:: cout << "Starting";
+
     cudaStreamCreate(&stream);
     cublasCreate(&cublas_handle);
     cublasLtCreate(&cublaslt_handle);
@@ -301,7 +303,8 @@ cublasMMWrapper init_cublas_ctx(DataType                        data_type,
 #else
     cublas_algo_map = cublasAlgoMap(GEMM_CONFIG);
 #endif
-
+  std::cout << "Inter";
+  
 #ifdef SPARSITY_ENABLED
     cublasMMWrapper cublas_wrapper = cublasMMWrapper(
         cublas_handle, cublaslt_handle, cusparselt_handle, stream, &cublas_algo_map, &cublas_wrapper_mutex, &allocator);
@@ -310,7 +313,10 @@ cublasMMWrapper init_cublas_ctx(DataType                        data_type,
         cublasMMWrapper(cublas_handle, cublaslt_handle, stream, &cublas_algo_map, &cublas_wrapper_mutex, &allocator);
 #endif
 
+  std::cout << "Inter 2";
+  
     if (data_type == DataType::TYPE_FP16) {
+    std::cout << "Trying";
         cublas_wrapper.setGemmConfig(CUDA_R_16F, CUDA_R_16F, CUDA_R_16F, CUDA_R_32F);
     }
 #ifdef ENABLE_BF16
@@ -322,6 +328,7 @@ cublasMMWrapper init_cublas_ctx(DataType                        data_type,
         cublas_wrapper.setFP32GemmConfig();
     }
 
+   std::cout << "Done";
     return cublas_wrapper;
 }
 
