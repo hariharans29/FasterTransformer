@@ -100,6 +100,7 @@ void multi_gpu_gpt_example(const INIReader reader, std::string in_csv)
     cudaDeviceProp                 prop;
     Allocator<AllocatorType::CUDA> allocator(init_cuda_ctx(stream, prop, rank));
 
+    std::cout << "Atleast we are getting started 2";
     cublasHandle_t   cublas_handle;
     cublasLtHandle_t cublaslt_handle;
     std::mutex       cublas_wrapper_mutex;
