@@ -121,6 +121,8 @@ void multi_gpu_gpt_example(const INIReader reader, std::string in_csv)
 #endif
     );
 
+    std::cout << "Reached here";
+    
     ParallelGptWeight<T> gpt_weights(model_config.hidden_units,
                                      model_config.inter_size,
                                      model_config.vocab_size,
@@ -135,6 +137,9 @@ void multi_gpu_gpt_example(const INIReader reader, std::string in_csv)
                                      p_prompt_tuning_table_pair,
                                      model_config.gpt_variants);
     gpt_weights.loadModel(model_config.model_dir);
+    
+    std::cout << "Reached here 2";
+   
 #ifdef SPARSITY_ENABLED
     if (model_config.sparse) {
         printf("[INFO] Compress weights for sparse inference\n");
